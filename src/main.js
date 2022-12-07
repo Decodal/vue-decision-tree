@@ -4,9 +4,15 @@ import { createApp } from 'vue/dist/vue.esm-bundler';
 // window.Vue = Vue;
 // import { createApp,h } from 'vue'
 import App from './App.vue'
+// import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 // import { createApp } from 'vue/dist/vue.esm-bundler';
 // import globalMixin from '@/mixins/generalMixin'
 // import BranchSteps from '@/components/BranchSteps.vue'
+
+// Make BootstrapVue available throughout your project
+// Vue.use(BootstrapVue)
+// // Optionally install the BootstrapVue icon components plugin
+// Vue.use(IconsPlugin)
 
 const app = createApp(App);
 
@@ -33,14 +39,16 @@ const app = createApp(App);
 app.component("BranchSteps", {
     template: `
     <div class="row">
-      <div class="col-md-6">
-        <div class="js-step-container">
-          <div v-for="(item, index) in steps" :key="item.question" :data-step-id="index" class="card mb-2 js-step-card" :class="isLastCard(index)">
-            <div class="card-body">
-              <div class="card-title">{{ item.question }}</div>
-              <step-btn :answers="item.answers" @next-step="loadStep" />
+      <div class="col-md-5">
+        <div class="js-step-container multi-4978 multi-block">
+          <TransitionGroup name="card">
+            <div v-for="(item, index) in steps" :key="item.question" :data-step-id="index" class="card mb-2 js-step-card" :class="isLastCard(index)">
+              <div class="card-body">
+                <h4>{{ item.question }}</h4>
+                <step-btn :answers="item.answers" @next-step="loadStep" />
+              </div>
             </div>
-          </div>
+          </TransitionGroup>
         </div>
       </div>
     </div>
@@ -92,8 +100,8 @@ app.component("BranchSteps", {
   
  app.component("StepBtn", {
     template: `
-    <div class="d-flex gap-2">
-      <button v-for="(item, index) in answers" :key="index" @click="btnClick($event, item, index)" :class="{active:index == btnSelected}" class="btn btn-outline-primary" type="button">{{ item.text }}</button>
+    <div class="d-flex justify-content-between next-step-links">
+      <a v-for="(item, index) in answers" :key="index" v-on:click.prevent.stop="btnClick($event, item, index)" :class="{active:index == btnSelected}" class=""><span>{{ item.text }}</span></a>
     </div>
     `,
     name: "StepBtn",
@@ -125,11 +133,6 @@ app.component("BranchSteps", {
     }
   });
 app.mount("#app");
-//   const app = new Vue({
-//     el: '#app',
-
-//     router
-// }); 
   
   function getDecisionTreeData(branch, id) {
     let decisionTreeData = {
@@ -150,8 +153,8 @@ app.mount("#app");
         },
         2: {
           question: "You will be in the old defined benefit section, go to former employees",
-          lastStep: true
-          
+          lastStep: true,
+          clickThrough: 'www.google.co.uk'
         },
         3: {
           question:
@@ -170,7 +173,8 @@ app.mount("#app");
         },
         4: {
           question: "You could be in either the Old Defined Benefit Joined Dun & Bradstreet after or the Money Purchase Scheme; check your leaver statement or email Mercer, the scheme administrators",
-          lastStep: true
+          lastStep: true,
+          clickThrough: 'www.google.co.uk'
           
         },
         8: {
@@ -201,19 +205,21 @@ app.mount("#app");
         },
         10: {
           question: "Go to current Employees, Defined Contribution Section",
-          lastStep: true
+          lastStep: true,
+          clickThrough: 'www.google.co.uk'
         },
         11: {
           question: "You will probably be in the old defined benefit section. Go to former employees, as this is the most likely option",
-          lastStep: true
+          lastStep: true,
+          clickThrough: 'www.google.co.uk'
         },
         12: {
           question: "Go to former employees Money Purchase Section, as this is the most likely option",
-          lastStep: true
+          lastStep: true,
+          clickThrough: 'www.google.co.uk'
         }
       }
     };
   
     return decisionTreeData[branch][id];
   }
-  
