@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container">
+  <div class="container">
     <BranchSteps />
   </div>
 </template>
@@ -9,7 +9,7 @@
 // import StepBtn from './components/StepBtn.vue'
 
 export default {
-  name: "App",
+  name: "cc-3902-app",
   data() {
     return {
       showP: false,
@@ -23,14 +23,37 @@ export default {
 </script>
 
 <style>
-@import "https://dnbpensionplan.concertstaging.co.uk/assets/css/styles.css";
-#app {
+/* @import "https://dnbpensionplan.concertstaging.co.uk/assets/css/styles.css"; */
+#cc-3902-app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.js-step-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  /* @include magic-border(4px, #222, 0.2s, 1); */
+}
+.card-body {
+  flex: 1 1 auto;
+  padding: 1.25rem;
+}
+.card-title {
+  color: #004a69;
+  font-size: 1.5rem;
+  margin: 0 0 1rem;
+  line-height: 1.1;
 }
 .next-step-links a {
   cursor: pointer;
@@ -52,42 +75,133 @@ export default {
 .next-step-links a:hover span {
   background-color: #004a69;
   color: white;
- 
 }
 
 .card-move, 
 .card-enter-active,
 .card-leave-active {
-  transition: all 1s ease;
-
+  /* transition: all 1s ease; */
+}
+.card-leave-active {
+  /* transition: all 0.5s ease; */
+  
 }
 .card-enter-from,
 .card-leave-to {
   opacity: 0;
   /* transform: translateX(430px); */
+  
+}
+.card-leave-to {
+  opacity: 0;
+  transform: translateX(0px);
 }
 .card-leave-active {
   position: absolute;
-  --_i: 100%;
 }
 .js-step-card {
-  --c: #004a69; /* the border color */
-  --b: 2px;    /* the border thickness*/
-  --g: 5px;     /* the gap on hover */
-  padding: calc(var(--g) + var(--b));
-  --_g: #0000 25%,var(--c) 0;
-  background: 
-    conic-gradient(from 180deg at top    var(--b) right var(--b),var(--_g))
-     var(--_i,200%) 0  /200% var(--_i,var(--b))  no-repeat,
-    conic-gradient(            at bottom var(--b) left  var(--b),var(--_g))
-     0   var(--_i,200%)/var(--_i,var(--b)) 200%  no-repeat;
-  transition: .3s, background-position .3s .3s;
-  /* cursor: pointer; */
+  text-decoration: none;
+  color: #222;
+  padding: 20px;
+  background: #efefef;
+  text-transform: uppercase;
+  text-align: center;
+  position: relative;
+  font-family: "Oswald";
+  margin: 20px;
+  flex-grow: 1;
+  cursor: pointer;
 }
-.js-step-card.current {
-  --_i: 100%;
-  transition: .3s, background-size .3s .3s;
+.js-step-card:before {
+  content: "";
+  position: absolute;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  top: calc(2px/-1);
+  left: calc(2px/-1);
+  background: linear-gradient(to right, blue 0%, blue 100%), linear-gradient(to top, blue 50%, transparent 50%), linear-gradient(to top, blue 50%, transparent 50%), linear-gradient(to right, blue 0%, blue 100%), linear-gradient(to left, blue 0%, blue 100%);
+  background-size: 100% 2px, 2px 200%, 2px 200%, 0% 2px, 0% 2px;
+  background-position: 50% 100%, 0% 0%, 100% 0%, 100% 0%, 0% 0%;
+  background-repeat: no-repeat, no-repeat;
+  transition: transform 0.3s ease-in-out, background-position 0.3s ease-in-out, background-size 0.3s ease-in-out;
+  transform: scaleX(0) rotate(0deg);
+  transition-delay: 0.6s, 0.3s, 0s;
 }
+.js-step-card:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: calc(100% + 8px);
+  height: calc(100% + 8px);
+  top: calc(4px/-1);
+  left: calc(4px/-1);
+  background: linear-gradient(to right, #222 0%, #222 100%), linear-gradient(to top, #222 50%, transparent 50%), linear-gradient(to top, #222 50%, transparent 50%), linear-gradient(to right, #222 0%, #222 100%), linear-gradient(to left, #222 0%, #222 100%);
+  background-size: 100% 4px, 4px 200%, 4px 200%, 0% 4px, 0% 4px;
+  background-position: 50% 100%, 0% 0%, 100% 0%, 100% 0%, 0% 0%;
+  background-repeat: no-repeat, no-repeat;
+  transition: transform 0.2s ease-in-out, background-position 0.2s ease-in-out, background-size 0.2s ease-in-out;
+  transform: scaleX(0) rotate(180deg);
+  transition-delay: 0.4s, 0.2s, 0s;
+}
+/* .js-step-card.current:before {
+  background-size: 200% 2px, 2px 400%, 2px 400%, 55% 2px, 55% 2px;
+  background-position: 50% 100%, 0% 100%, 100% 100%, 100% 0%, 0% 0%;
+  transform: scaleX(1) rotate(0deg);
+  transition-delay: 0s, 0.3s, 0.6s;
+} */
+.js-step-card.current:before {
+  background-size: 200% 4px, 4px 400%, 4px 400%, 55% 4px, 55% 4px;
+  background-position: 50% 100%, 0% 100%, 100% 100%, 100% 0%, 0% 0%;
+  transform: scaleX(1) rotate(180deg);
+  transition-delay: 0s, 0.2s, 0.4s;
+}
+/* .js-step-card.current {
+  box-shadow: inset 0 0 0 2px red;
+  position: relative;
+  vertical-align: middle;
+  transition: color 0.25s;
+}
+.js-step-card.current::before,
+.js-step-card.current::after {
+    box-sizing: inherit;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid transparent;
+    width: 0;
+    height: 0;
+    z-index: -1;
+  }
+.js-step-card.current::before {
+    top: 0;
+    left: 0;
+}
+.js-step-card.current::after {
+    top: 0;
+    left: 0;
+}
+.js-step-card.current::before,
+.js-step-card.current::after {
+  width: 100%;
+  height: 100%;
+}
+
+.js-step-card.current::before {
+    border-top-color: yellow;
+    border-right-color: yellow;
+    transition:
+      width 0.25s ease-out, 
+      height 0.25s ease-out 0.25s;
+  }
+
+  .js-step-card.current::after {
+    border-bottom-color: yellow;
+    border-left-color: yellow;
+    transition: 
+      height 0.25s ease-out,
+      width 0.25s ease-out 0.25s;
+  } */
 
 
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="row">
+  <div class="row justify-content-center">
       <div class="col-md-6">
       <div class="js-step-container">
           <div v-for="(item, index) in steps" :key="item.question" :data-step-id="index" class="card mb-2 js-step-card" :class="isLastCard(index)">

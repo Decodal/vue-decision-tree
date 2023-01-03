@@ -13,6 +13,8 @@ import App from './App.vue'
 // Vue.use(BootstrapVue)
 // // Optionally install the BootstrapVue icon components plugin
 // Vue.use(IconsPlugin)
+/* Import main.scss file on bootup */
+import '@/scss/main.scss';
 
 const app = createApp(App);
 
@@ -38,13 +40,18 @@ const app = createApp(App);
 
 app.component("BranchSteps", {
     template: `
-    <div class="row">
-      <div class="col-md-5">
+    <div class="row justify-content-center">
+      <div class="col-md-12">
         <div class="js-step-container multi-4978 multi-block">
           <TransitionGroup name="card">
-            <div v-for="(item, index) in steps" :key="item.question" :data-step-id="index" class="card mb-2 js-step-card" :class="isLastCard(index)">
+            <div v-for="(item, index) in steps" 
+            :key="item.question" 
+            :data-step-id="index" 
+            class="card mb-2 js-step-card" 
+            :class="isLastCard(index), loadStep">
               <div class="card-body">
-                <h4>{{ item.question }}</h4>
+              <a v-if="item.clickThrough" v-bind:href="item.clickThrough"><div class="card-title">{{ item.question }}</div></a>
+              <div class="card-title" v-else>{{ item.question }}</div>
                 <step-btn :answers="item.answers" @next-step="loadStep" />
               </div>
             </div>
@@ -73,16 +80,38 @@ app.component("BranchSteps", {
           stepCount = parseInt(card.dataset.stepId) + 1,
           classes = card.classList,
           currentCard = false;
-  
+          // directionClass = btn.firstChild.data.toLowerCase();
+          //  console.log(directionClass);
+          //  classes.remove("yes", "no");
+           
+          // classes.add(directionClass);
+          // console.log("run once");
+          // classes.remove("yes", "no");
+          // classes.add(directionClass);
         if (classes.contains("current")) {
+          //classes.add(directionClass);
           classes.remove("current");
+          // classes.remove("yes no");
+          // console.log("clicked current");
+          // classes.add("help-no");
           currentCard = true;
         }
+        // if (!classes.contains("yes", "no")) {
+
+        //   console.log("no directionClass");
+
+        // }
   
         if (!lastStep && currentCard) {
           this.steps.push(getDecisionTreeData("higher", nextStep));
+         // console.log("ive clicked");
+        //  classes.remove("yes", "no");
+          // classes.add(directionClass);
         } else if (!lastStep && !currentCard) {
           //reset steps to clicked
+          //classes.add("help-yes");
+          // classes.remove("yes", "no");
+          // classes.add(directionClass);
           this.steps.length = stepCount;
           this.stepCounter = stepCount;
           this.steps.push(getDecisionTreeData("higher", nextStep));
@@ -94,6 +123,11 @@ app.component("BranchSteps", {
         if (this.steps.length - 1 === index) {
           return "current";
         }
+      },
+      direction(index) {
+        if (this.steps.length - 1 === index) {
+          return "current";
+        }
       }
     }
   });
@@ -101,7 +135,10 @@ app.component("BranchSteps", {
  app.component("StepBtn", {
     template: `
     <div class="d-flex justify-content-between next-step-links">
-      <a v-for="(item, index) in answers" :key="index" v-on:click.prevent.stop="btnClick($event, item, index)" :class="{active:index == btnSelected}" class=""><span>{{ item.text }}</span></a>
+      <a v-for="(item, index) in answers" :key="index" 
+      v-on:click.prevent.stop="btnClick($event, item, index)" 
+      :class="{active:index == btnSelected}" 
+      ><span>{{ item.text }}</span></a>
     </div>
     `,
     name: "StepBtn",
@@ -115,10 +152,10 @@ app.component("BranchSteps", {
     methods: {
       btnClick(event, item, index) {
         let clickedBtn = event.target,
-          activeBtns = clickedBtn.parentNode.getElementsByClassName("active"),
+          // activeBtns = clickedBtn.parentNode.getElementsByClassName("active"),
           lastStep = false,
           ids = item.next;
-  
+          //console.log(event.target.firstChild.data);
         this.btnSelected = index;
   
         //is it the last step
@@ -132,7 +169,7 @@ app.component("BranchSteps", {
       }
     }
   });
-app.mount("#app");
+app.mount("#cc-3902-app");
   
   function getDecisionTreeData(branch, id) {
     let decisionTreeData = {
@@ -154,7 +191,7 @@ app.mount("#app");
         2: {
           question: "You will be in the old defined benefit section, go to former employees",
           lastStep: true,
-          clickThrough: 'www.google.co.uk'
+          clickThrough: '/former-employees'
         },
         3: {
           question:
@@ -174,7 +211,7 @@ app.mount("#app");
         4: {
           question: "You could be in either the Old Defined Benefit Joined Dun & Bradstreet after or the Money Purchase Scheme; check your leaver statement or email Mercer, the scheme administrators",
           lastStep: true,
-          clickThrough: 'www.google.co.uk'
+          clickThrough: '/contact'
           
         },
         8: {
@@ -206,17 +243,17 @@ app.mount("#app");
         10: {
           question: "Go to current Employees, Defined Contribution Section",
           lastStep: true,
-          clickThrough: 'www.google.co.uk'
+          clickThrough: '/defined-contribution'
         },
         11: {
           question: "You will probably be in the old defined benefit section. Go to former employees, as this is the most likely option",
           lastStep: true,
-          clickThrough: 'www.google.co.uk'
+          clickThrough: '/former-employees'
         },
         12: {
           question: "Go to former employees Money Purchase Section, as this is the most likely option",
           lastStep: true,
-          clickThrough: 'www.google.co.uk'
+          clickThrough: '/care'
         }
       }
     };
