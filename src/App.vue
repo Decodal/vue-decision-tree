@@ -25,14 +25,19 @@ export default {
 <style>
 /* @import "https://dnbpensionplan.concertstaging.co.uk/assets/css/styles.css"; */
 #cc-3902-app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Raleway,Helvetica,Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
 }
-
+.js-step-container {
+  padding: 1.25rem;
+  background: white;
+  z-index: 0;
+  position: relative;
+}
 .js-step-card {
   position: relative;
   display: flex;
@@ -80,21 +85,22 @@ export default {
 .card-move, 
 .card-enter-active,
 .card-leave-active {
-  /* transition: all 1s ease; */
+  transition: all 1s ease;
 }
 .card-leave-active {
-  /* transition: all 0.5s ease; */
+  transition: all 0.5s ease;
   
 }
-.card-enter-from,
-.card-leave-to {
+.card-enter-from {
   opacity: 0;
-  /* transform: translateX(430px); */
+  transform: translateX(430px);
   
 }
 .card-leave-to {
   opacity: 0;
   transform: translateX(0px);
+  transition: all 0.1s ease;
+  position: relative;
 }
 .card-leave-active {
   position: absolute;
@@ -107,7 +113,6 @@ export default {
   text-transform: uppercase;
   text-align: center;
   position: relative;
-  font-family: "Oswald";
   margin: 20px;
   flex-grow: 1;
   cursor: pointer;
@@ -143,65 +148,14 @@ export default {
   transform: scaleX(0) rotate(180deg);
   transition-delay: 0.4s, 0.2s, 0s;
 }
-/* .js-step-card.current:before {
-  background-size: 200% 2px, 2px 400%, 2px 400%, 55% 2px, 55% 2px;
-  background-position: 50% 100%, 0% 100%, 100% 100%, 100% 0%, 0% 0%;
-  transform: scaleX(1) rotate(0deg);
-  transition-delay: 0s, 0.3s, 0.6s;
-} */
+
 .js-step-card.current:before {
   background-size: 200% 4px, 4px 400%, 4px 400%, 55% 4px, 55% 4px;
   background-position: 50% 100%, 0% 100%, 100% 100%, 100% 0%, 0% 0%;
   transform: scaleX(1) rotate(180deg);
   transition-delay: 0s, 0.2s, 0.4s;
 }
-/* .js-step-card.current {
-  box-shadow: inset 0 0 0 2px red;
-  position: relative;
-  vertical-align: middle;
-  transition: color 0.25s;
-}
-.js-step-card.current::before,
-.js-step-card.current::after {
-    box-sizing: inherit;
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border: 2px solid transparent;
-    width: 0;
-    height: 0;
-    z-index: -1;
-  }
-.js-step-card.current::before {
-    top: 0;
-    left: 0;
-}
-.js-step-card.current::after {
-    top: 0;
-    left: 0;
-}
-.js-step-card.current::before,
-.js-step-card.current::after {
-  width: 100%;
-  height: 100%;
-}
 
-.js-step-card.current::before {
-    border-top-color: yellow;
-    border-right-color: yellow;
-    transition:
-      width 0.25s ease-out, 
-      height 0.25s ease-out 0.25s;
-  }
-
-  .js-step-card.current::after {
-    border-bottom-color: yellow;
-    border-left-color: yellow;
-    transition: 
-      height 0.25s ease-out,
-      width 0.25s ease-out 0.25s;
-  } */
 
 
 </style>
