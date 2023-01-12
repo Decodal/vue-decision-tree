@@ -42,7 +42,7 @@ app.component("BranchSteps", {
     template: `
     <div class="row justify-content-center">
       <div class="col-md-12">
-        <div class="js-step-container multi-4978 multi-block">
+        <div class="js-step-container">
           <TransitionGroup name="card">
             <div v-for="(item, index) in steps" 
             :key="item.question" 
@@ -50,7 +50,8 @@ app.component("BranchSteps", {
             class="card mb-2 js-step-card" 
             :class="isLastCard(index), loadStep">
               <div class="card-body">
-              <a v-if="item.clickThrough" v-bind:href="item.clickThrough"><div class="card-title">{{ item.question }}</div></a>
+              <a v-if="item.clickThrough" v-bind:href="item.clickThrough" v-bind:class = "(item.clickThrough)?'last-step':''">
+              {{ item.question }}</a>
               <div class="card-title" v-else>{{ item.question }}</div>
                 <step-btn :answers="item.answers" @next-step="loadStep" />
               </div>

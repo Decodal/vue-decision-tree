@@ -53,13 +53,37 @@ export default {
 .card-body {
   flex: 1 1 auto;
   padding: 1.25rem;
-}
-.card-title {
   color: #004a69;
   font-size: 1.5rem;
-  margin: 0 0 1rem;
   line-height: 1.1;
 }
+
+.card-title {
+    margin-bottom: 1.75rem;
+}
+
+a.last-step {
+  color: #004a69;
+  display:inline; 
+	text-decoration: none;
+	background-image: linear-gradient(#004a69, #004a69);
+	background-position: 0% 100%;
+	background-repeat: no-repeat;
+	background-size: 0% 2px;
+	transition: background-size .3s;
+}
+a.last-step:hover {
+	background-size: 100% 2px;
+  text-decoration: none;
+  color: #004a69;
+}
+
+
+/* .card-title {
+  
+  margin: 0 0 1rem;
+ 
+} */
 .next-step-links a {
   cursor: pointer;
 }
