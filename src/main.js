@@ -177,7 +177,7 @@ app.mount("#cc-3902-app");
       higher: {
         1: {
           question:
-            "Joined Dun & Bradstreet after April 1961 and before April 1988?",
+            "Joined after 1961 and pre April 1988 ?",
           answers: [
             {
               text: "Yes",
@@ -190,13 +190,13 @@ app.mount("#cc-3902-app");
           ]
         },
         2: {
-          question: "You will be in the old defined benefit section, go to former employees",
+          question: "YOU WILL BE IN THE FINAL SALARY SECTION, GO TO FORMER EMPLOYEES ",
           lastStep: true,
           clickThrough: '/former-employees'
         },
         3: {
           question:
-            "Joined after April 1988 and before April 1993?",
+            "After April 1988 and before April 1993?",
           answers: [
             {
               text: "Yes",
@@ -210,13 +210,13 @@ app.mount("#cc-3902-app");
           ]
         },
         4: {
-          question: "You could be in either the Old Defined Benefit Scheme, or the Money Purchase Scheme; check your leaver statement or email Buck, the scheme administrators",
+          question: "YOU COULD BE IN EITHER THE FINAL SALARY OR MONEY PURCHASE SECTION, EMAIL BUCK, THE SCHEME ADMINISTRATORS",
           lastStep: true,
           clickThrough: '/contact'
           
         },
         8: {
-          question: "Joined after April 1993 and before April 2004?",
+          question: "After April 1993 and before April 2004?",
           answers: [
             {
               text: "Yes",
@@ -229,7 +229,7 @@ app.mount("#cc-3902-app");
           ]
         },
         9: {
-          question: "Were you over 40 during this time?",
+          question: "Over 40?",
           answers: [
             {
               text: "Yes",
@@ -247,14 +247,14 @@ app.mount("#cc-3902-app");
           clickThrough: '/defined-contribution'
         },
         11: {
-          question: "You will probably be in the old defined benefit section. Go to former employees, as this is the most likely option",
+          question: "YOU WILL PROBABLY BE IN THE FINAL SALARY SECTION. GO TO FORMER EMPLOYEES, AS THIS IS THE MOST LIKELY OPTION",
           lastStep: true,
           clickThrough: '/former-employees'
         },
         12: {
           question: "Go to former employees Money Purchase Section, as this is the most likely option",
           lastStep: true,
-          clickThrough: '/care'
+          clickThrough: '/defined-contribution'
         }
       }
     };
