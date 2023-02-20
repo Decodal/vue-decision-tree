@@ -5,8 +5,7 @@
 </template>
 
 <script>
-// import BranchSteps from '@/components/BranchSteps.vue'
-// import StepBtn from './components/StepBtn.vue'
+import BranchSteps from '@/components/BranchSteps.vue'
 
 export default {
   name: "cc-3902-app",
@@ -15,9 +14,10 @@ export default {
       showP: false,
     };
   },
-  // props: {
-  //   showP: { type: Boolean, default: false },
-  // },
+  components: {
+    BranchSteps
+  },
+
 }
   
 </script>
@@ -77,7 +77,6 @@ a.last-step:hover {
   text-decoration: none;
   color: #004a69;
 }
-
 
 /* .card-title {
   

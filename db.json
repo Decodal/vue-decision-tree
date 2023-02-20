@@ -1,0 +1,25 @@
+{
+    "decisionTreeData" : [
+    {"1": {
+        "question":
+            "Joined after 1961 and pre April 1988?",
+        "answers": [
+            {
+            "text": "Yes",
+            "next": 2
+            },
+            {
+            "text": "No",
+            "next": 3
+            }
+        ]
+        }
+    },
+    {"2": {
+        "answer": "YOU WILL BE IN THE FINAL SALARY SECTION, GO TO FORMER EMPLOYEES",
+        "clickThrough": "/former-employees"
+        }
+    }
+    
+    ]
+}
